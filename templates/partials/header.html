@@ -1,0 +1,92 @@
+{% load static %}
+<header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between pt-6 px-6 lg:px-8" aria-label="Global">
+        <div class="flex items-center gap-4">
+            <a href="{% url 'home' %}" class="-m-1.5 p-1.5">
+                <img class="h-[50px] md:h-[60px] w-auto rounded-md" src="{% static 'assets/logo.png' %}" alt="">
+            </a>
+        </div>
+        <div class="flex items-center gap-6 ml-6 md:ml-12 mr-auto">
+            <a href="{% url 'home' %}" class="text-sm font-medium leading-6 text-gray-100 def-nav-links relative">
+                Home
+            </a>
+            <a href="{% url 'designs' %}" class="text-sm font-medium leading-6 text-gray-100 def-nav-links relative">
+                Designs
+            </a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="md:hidden navbar-nav" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <div class="fixed inset-0 z-50"></div>
+        <div
+            class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[var(--black)] backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+            <div class="flex items-center justify-between">
+                <a href="{% url 'home' %}" class="-m-1.5 p-1.5">
+                    <img class="h-[80px] w-auto" src="{% static 'assets/logo.jpg' %}" alt="">
+                </a>
+                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-300 nav-tgl">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/10">
+                    <ul class="py-4 px-0">
+                        <li class="py-3">
+                            <a href="{% url 'home' %}"
+                                class="def-nav-links text-sm font-medium w-4/6 flex justify-between">
+                                <span>Home</span>
+                                <span style="color: #E5E5E570 !important;">&rarr;</span>
+                            </a>
+                        </li>
+                        <li class="py-3">
+                            <a href="{% url 'designs' %}"
+                                class="def-nav-links text-sm font-medium w-5/6 flex justify-between">
+                                <span>Designs</span>
+                                <span style="color: #E5E5E570 !important;">&rarr;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<style>
+    .navbar-nav {
+        display: none;
+    }
+
+    .def-nav-links {
+        color: #333333 !important;
+    }
+
+    .def-nav-links::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 3px;
+        background: #E5E5E570;
+        border-radius: 9999px;
+        position: absolute;
+        bottom: -1px;
+        left: 8px;
+    }
+</style>
+
+<script>
+    $('.nav-tgl').click(() => {
+        $('.navbar-nav').fadeToggle(100)
+    })
+
+    var links = document.querySelectorAll('a')
+    for (var i = 0; i < links.length; i++) {
+        if (window.location.pathname == $(links[i]).attr('href'))
+            $(links[i]).removeClass('text-gray-200').addClass('text-[var(--gold)]')
+    }
+</script>

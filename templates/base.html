@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
+    <title>
+        {% block title %}
+        {% endblock title %}
+        | Adegbajumo
+    </title>
+    <script src="{% static 'scripts/tailwind.js' %}"></script>
+    <script src="{% static 'scripts/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'styles/general_styles.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/6.0.4/ionicons.min.js"
+        integrity="sha512-8O7VIjJxO2P/Vfm34bYnEbPwocNkwUQdzJCYooCDWP9MT4GpPw5Ktmk9NxVyWfrzDlXnbCsZzSUR81Etc6gv0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static 'scripts/imageloaded.min.js' %}"></script>
+    <script src="{% static 'scripts/masonry.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'styles/owlcarousel.min.css' %}">
+    <script src="{% static 'scripts/owlcarousel.min.js' %}"></script>
+</head>
+
+<body class="bg-[var(--black)] relative">
+    {% include 'partials/header.html' %}
+    <div
+        class="fixed w-screen h-[80px] top-0 left-0 bg-gradient-to-b from-[var(--black)] to-transparent z-30 pointer-events-none">
+    </div>
+    <div
+        class="fixed w-screen h-[80px] bottom-0 left-0 bg-gradient-to-t from-[var(--black)] to-transparent z-30 pointer-events-none">
+    </div>
+
+    <main class="py-6">
+        {% block main %}
+
+        {% endblock main %}
+    </main>
+</body>
+
+</html>

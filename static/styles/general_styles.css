@@ -1,0 +1,43 @@
+* {
+    color: #333333 !important;
+}
+
+:root {
+    --gold: #541dd3;
+    --black: #ffffff;
+}
+
+.bg-design-wrapper {
+    position: absolute;
+    inset: auto 0;
+    top: calc(100%-13rem);
+    z-index: -10;
+    overflow: hidden;
+    filter: blur(3rem);
+}
+
+.bg-design-wrapper2 {
+    transform: rotateY(180deg);
+}
+
+.bg-design-2 {
+    position: relative;
+    left: calc(50%+3rem);
+    aspect-ratio: 1155/678;
+    width: 36.125rem;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, #D1AA67, #ab894d);
+    filter: opacity(30%);
+    clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)
+}
+
+@media screen and (min-width: 560px) {
+    .bg-design-wrapper {
+        top: calc(100%-30rem);
+    }
+
+    .bg-design-2 {
+        left: calc(50%+36rem);
+        width: 72.1875rem;
+    }
+}

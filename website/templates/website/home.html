@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="bg-[var(--black)] pt-14">
+    <!-- BANNER SECTION -->
+    <div class="relative isolate px-6 lg:px-8">
+        <div class="bg-design-wrapper bg-design-wrapper2">
+            <div class="bg-design-2">
+            </div>
+        </div>
+        <div class="sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4">
+            <div class="max-w-2xl py-24 md:py-24 lg:py-32">
+                <div class="text-start">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-50 sm:text-6xl">
+                        Welcome to<br>----- ----,
+                    </h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error, voluptates debitis dolore
+                        voluptas ea reprehenderit corrupti possimus numquam excepturi beatae! Lorem ipsum dolor sit
+                        amet.
+                    </p>
+                </div>
+            </div>
+            <div class="flex-1 grid place-items-center relative max-lg:hidden">
+                <img src="{% static 'assets/banner.jpg' %}" alt="" class="w-full lg:w-5/6 min-h-[250px] rounded-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- LATEST RELEASES SECTION -->
+    <div class="relative isolate px-2 md:px-10 lg:px-18">
+        <div class="py-0">
+            <div class="flex justify-between items-center px-2">
+                <h3 class="text-2xl sm:text-4xl font-bold text-gray-50">Latest Designs</h3>
+                <a href="{% url 'designs' %}" class="text-[var(--gold)] font-medium min-w-fit">View More
+                    &RightArrow;</a>
+            </div>
+            <div class="pt-12 pb-8" id="products">
+                {% for design in designs %}
+                <div class="w-3/6 sm:w-2/6 lg:w-1/5 p-1 product_card mb-2">
+                    <a href="{% url 'design_details' id=design.pk %}" class="w-full relative">
+                        <img src="{{design.image.url}}" alt="" loading="lazy"
+                            class="w-full rounded-md bg-[#FFFFFF10] product_image">
+                    </a>
+                    <div class="mt-2 w-full underline text-[14px]">
+                        {{design.description|truncatechars:50}}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="px-3 md:px-6 lg:px-12 max-w-3xl pb-14">
+        <p class="mt-2 text-md font-semibold tracking-tight text-gray-100 sm:text-lg">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste porro ad, maxime saepe odit sint.
+        </p>
+        <div class="h-px bg-[#444] my-8"></div>
+        <div class="flex items-center gap-3">
+            <small class="text-gray-400">
+                &copy; 2023, Artelligence, All rights reserved
+            </small>
+
+            <a href="#" class="ml-auto text-gray-200 text-lg">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="text-gray-200 text-lg">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#" class="text-gray-200 text-lg">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+            <a href="#" class="text-gray-200 text-lg">
+                <ion-icon name="mail-sharp"></ion-icon>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var products_wrapper_width = $('#products').width();
+    var product_column_width;
+    if (window.innerWidth < 640) {
+        product_column_width = product_column_width * 0.5;
+    } else if (window.innerWidth < 1024) {
+        product_column_width = product_column_width * 0.3333;
+    } else {
+        product_column_width = product_column_width * 0.2;
+    }
+    $('#products').masonry({
+        itemSelector: '.product_card',
+        columnWidth: product_column_width
+    });
+    $('#products').imagesLoaded(() => {
+        $('#products').masonry('reloadItems');
+        $('#products').masonry('layout');
+    });
+</script>
+{% endblock main %}

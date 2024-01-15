@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+| Add Gallery Item
+{% endblock title %}
+
+{% block main %}
+<div class="px-6 pt-28 lg:px-8">
+    <div class="w-full lg:w-5/6 mx-auto">
+        <div class="w-full flex max-sm:flex-col gap-6">
+            <div class="w-full md:w-3/6 lg:w-2/6">
+                <div class="w-4/6 mx-auto mt-4">
+                    <img src="{{design.image.url}}" alt="" class="item w-full aspect-[4/6] rounded-md bg-white/30">
+                </div>
+            </div>
+            <div class="w-full flex-1">
+                <div class="w-fit ml-auto flex gap-2">
+                    <span class="text-xl text-gray-300"><ion-icon name="eye"></ion-icon></span>
+                    <span>{{design.likes}}</span>
+                </div>
+                <!-- DESCRIPTION -->
+                <div class="w-full">
+                    <span for="description" class="font-bold text-gray-100">Description -</span>
+                    <div class="w-5/6 pl-4">
+                        <small class="text-[14px] text-gray-300">{{design.description|safe}}</small>
+                    </div>
+                </div>
+
+                <!-- PRICE -->
+                <div class="w-4/6 md:w-3/6 lg:w-2/6 mt-8 flex items-center justify-between">
+                    <span for="price" class="text-[14px] text-gray-100 font-bold">
+                        Price - <br>
+                        {% if design.delivery_fee == 0 or design.delivery_fee is None %}
+                        <span class="text-gray-300 text-[12px]">Free Delivery</span>
+                        {% else %}
+                        <span class="text-gray-300 text-[12px]">Delivery: ${{design.delivery_fee}}</span>
+                        {% endif %}
+                    </span>
+                    <div>
+                        <span class="font-bold text-[var(--gold)]">${{design.price}}</span>
+                    </div>
+                </div>
+
+                <!-- SUBMIT BTN -->
+                <div class="w-full mt-8 flex gap-3">
+                    <a href="tel:{{design.uploaded_by.phone}}"
+                        class="w-full flex-1 py-2 px-3 rounded-md border-2 border-[var(--gold)] bg-[var(--black)] text-[var(--gold)] text-[14px] font-medium flex items-center justify-center gap-2">
+                        <ion-icon name="call"></ion-icon>
+                        Call Seller
+                    </a>
+                    <a href="mailto:{{design.uploaded_by.email}}"
+                        class="w-full flex-1 py-2 px-3 rounded-md border-2 border-[var(--gold)] bg-[var(--black)] text-[var(--gold)] text-[14px] font-medium flex items-center justify-center gap-2">
+                        <ion-icon name="mail"></ion-icon>
+                        Mail Seller
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="px-3 md:px-6 lg:px-12 max-w-3xl py-14">
+        <p class="mt-2 text-md font-semibold tracking-tight text-gray-100 sm:text-lg">
+            Welcome to a place where fashion is an expression, and every garment is a delightful story of passion.
+        </p>
+        <div class="h-px bg-[#444] my-8"></div>
+        <div class="flex items-center gap-3">
+            <small class="text-gray-400">
+                &copy; 2023, Artelligence, All rights reserved
+            </small>
+
+            <a href="#" class="ml-auto text-gray-200 text-lg">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="text-gray-200 text-lg">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#" class="text-gray-200 text-lg">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+            <a href="#" class="text-gray-200 text-lg">
+                <ion-icon name="mail-sharp"></ion-icon>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    #selected_images::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    .small-image {
+        border-radius: 10px;
+        width: 40px;
+        height: 40px;
+        background-color: #FFFFFF30;
+    }
+</style>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false,
+        autoplay: true,
+        items: 1,
+    });
+</script>
+{% endblock main %}
