@@ -1,57 +1,43 @@
 {% load static %}
-<header class="absolute inset-x-0 top-0 z-50">
-    <nav class="flex items-center justify-between pt-6 px-6 lg:px-8" aria-label="Global">
+<header class="fixed inset-x-0 top-0 z-50 bg-gradient-to-r from-[#FFFFFF] from-60% to-[#FFFFFF50] backdrop-blur-md">
+    <nav class="flex items-center justify-between px-6 lg:px-8" aria-label="Global">
         <div class="flex items-center gap-4">
             <a href="{% url 'home' %}" class="-m-1.5 p-1.5">
-                <img class="h-[50px] md:h-[60px] w-auto rounded-md" src="{% static 'assets/logo.png' %}" alt="">
+                <img class="h-[80px] md:h-[100px] w-auto rounded-md" src="{% static 'assets/logo.jpg' %}" alt="">
             </a>
         </div>
-        <div class="flex items-center gap-6 ml-6 md:ml-12 mr-auto">
-            <a href="{% url 'home' %}" class="text-sm font-medium leading-6 text-gray-100 def-nav-links relative">
-                Home
+        <div class="hidden md:flex items-center gap-6 ml-6 md:ml-12 mr-auto">
+            {% for category in categories %}
+            <a href="{% url 'designs' %}?c={{category.name}}&c_key={{category.id}}&sub="
+                class="text-sm font-medium leading-6 text-gray-100 def-nav-links relative grid place-items-center">
+                {{category.name}}
             </a>
-            <a href="{% url 'designs' %}" class="text-sm font-medium leading-6 text-gray-100 def-nav-links relative">
-                Designs
-            </a>
+            {% endfor %}
         </div>
+        <button class="nav-tgl bg-transparent rounded-md border-none outline-none text-2xl">
+            <ion-icon name="menu-sharp"></ion-icon>
+        </button>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
     <div class="md:hidden navbar-nav" role="dialog" aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 z-50"></div>
-        <div
-            class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[var(--black)] backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
-            <div class="flex items-center justify-between">
-                <a href="{% url 'home' %}" class="-m-1.5 p-1.5">
-                    <img class="h-[80px] w-auto" src="{% static 'assets/logo.jpg' %}" alt="">
-                </a>
-                <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-300 nav-tgl">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                    <ul class="py-4 px-0">
-                        <li class="py-3">
-                            <a href="{% url 'home' %}"
-                                class="def-nav-links text-sm font-medium w-4/6 flex justify-between">
-                                <span>Home</span>
-                                <span style="color: #E5E5E570 !important;">&rarr;</span>
-                            </a>
-                        </li>
-                        <li class="py-3">
-                            <a href="{% url 'designs' %}"
-                                class="def-nav-links text-sm font-medium w-5/6 flex justify-between">
-                                <span>Designs</span>
-                                <span style="color: #E5E5E570 !important;">&rarr;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="w-full h-[90vh] overflow-y-auto">
+            <ul class="pt-4 pb-8 px-6 flex flex-col gap-3">
+                <li class="py-3">
+                    <h3 class="text-2xl sm:text-4xl font-bold text-gray-50">Categories</h3>
+                </li>
+                {% for category in categories %}
+                <li class="py-3 px-3">
+                    <a href="{% url 'designs' %}?c={{category.name}}&c_key={{category.id}}&sub="
+                        class="text-lg font-medium leading-6 text-gray-100 relative flex gap-3 w-fit">
+                        <span class="underline">
+                            {{category.name}}
+                        </span>
+                        <span>&rarr;</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </header>
@@ -71,11 +57,10 @@
         position: absolute;
         width: 16px;
         height: 3px;
-        background: #E5E5E570;
+        background: #C0C0C0;
         border-radius: 9999px;
         position: absolute;
         bottom: -1px;
-        left: 8px;
     }
 </style>
 

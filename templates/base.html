@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/logo.jpg' %}" type="image/x-icon">
     <title>
         {% block title %}
         {% endblock title %}
-        | Adegbajumo
+        | DwellAbliss
     </title>
     <script src="{% static 'scripts/tailwind.js' %}"></script>
     <script src="{% static 'scripts/jquery.min.js' %}"></script>
@@ -25,9 +25,6 @@
 
 <body class="bg-[var(--black)] relative">
     {% include 'partials/header.html' %}
-    <div
-        class="fixed w-screen h-[80px] top-0 left-0 bg-gradient-to-b from-[var(--black)] to-transparent z-30 pointer-events-none">
-    </div>
     <div
         class="fixed w-screen h-[80px] bottom-0 left-0 bg-gradient-to-t from-[var(--black)] to-transparent z-30 pointer-events-none">
     </div>
